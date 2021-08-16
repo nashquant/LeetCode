@@ -1,3 +1,10 @@
+"""
+Linked Lists Utils
+
+Still lots of implementation to handle.
+
+"""
+
 from typing import Optional
 from numbers import Number
 
@@ -52,47 +59,3 @@ class LinkedList:
                 print(" ---> ", end="")
             else:
                 break
-
-
-class Algoritmhs:
-    @staticmethod
-    def mergeSortedLLs(
-        l1: Optional[LinkedList],
-        l2: Optional[LinkedList],
-    ) -> Optional[Node]:
-
-        if not l2 and not l1:
-            return None
-        if not l2:
-            return l1
-        if not l1:
-            return l2
-
-        ans = LinkedList()
-
-        p1 = l1.head
-        p2 = l2.head
-
-        while True:
-
-            nL1 = p1 is None
-            nL2 = p2 is None
-
-            if nL1 and nL2:
-                break
-            elif nL1:
-                val = p2.val
-                p2 = p2.next
-            elif nL2:
-                val = p1.val
-                p1 = p1.next
-            elif p1.val < p2.val:
-                val = p1.val
-                p1 = p1.next
-            else:
-                val = p2.val
-                p2 = p2.next
-
-            ans.addValue(val)
-
-        return ans
