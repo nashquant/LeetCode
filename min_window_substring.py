@@ -1,3 +1,13 @@
+"""
+Problem #76 - Minimum Window Substring
+
+264/266 cases passed
+
+Still trying to enhance performance
+to pass the last 2 cases.
+
+"""
+
 from collections import Counter
 
 class Solution:
