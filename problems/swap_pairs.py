@@ -1,7 +1,7 @@
 """
 Problem 24 - Swap Pairs on LL
 
-Failed - Got this wonderful solution at the discussion session
+Sucess
 """
 
 # Definition for singly-linked list.
@@ -10,13 +10,37 @@ Failed - Got this wonderful solution at the discussion session
 #         self.val = val
 #         self.next = next
 class Solution:
+            
+    def swapSingle(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:        
-      # base case: only swap if subsequent pair of nodes exist
-      if not head or not head.next:
-          return head
+        node = head.next
+        cache = node.next
 
-      first, second = head, head.next
-      # reverse the current nodes while pointing the first nodes next to the head of the subsequent reveresed list
-      second.next, first.next = first, self.swapPairs(second.next)
-      return second
+        node.next = head
+        head.next = cache
+        
+        return node
+        
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if head is None: return None
+        if head.next is None: return head
+        
+        new_head = head.next
+        node, prev = head, None
+        
+        while True:
+            head = self.swapSingle(node)
+            if prev is not None:
+                prev.next.next = head
+            node = head.next.next
+            
+            if node is None or node.next is None:
+                break
+
+            prev = head
+            
+        return new_head
+
+
+
