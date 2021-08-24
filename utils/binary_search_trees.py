@@ -1,3 +1,4 @@
+from typing import Optional
 class TreeNode:
     def __init__(self, val: int):
         self.val = val
@@ -35,7 +36,7 @@ class BST:
 
     def visit(self, node: TreeNode):
         if node is not None:
-            print(node.val)
+            print(node.val, end = " ")
 
     def preorder(self, node: Optional[TreeNode] = None):
         """
@@ -46,9 +47,9 @@ class BST:
         
         self.visit(node)
         if node.left:
-            self.pre_order(node.left)
+            self.preorder(node.left)
         if node.right:
-            self.pre_order(node.right)
+            self.preorder(node.right)
 
     def inorder(self, node: Optional[TreeNode] = None):
         """
@@ -58,10 +59,10 @@ class BST:
         node = node or self.root
         
         if node.left:
-            self.in_order(node.left)
+            self.inorder(node.left)
         self.visit(node)
         if node.right:
-            self.in_order(node.right)
+            self.inorder(node.right)
     
     def postorder(self, node: Optional[TreeNode] = None):
 
@@ -71,9 +72,9 @@ class BST:
 
         node = node or self.root
         if node.left:
-            self.post_order(node.left)
+            self.postorder(node.left)
         if node.right:
-            self.post_order(node.right)
+            self.postorder(node.right)
         self.visit(node)
         
     def inorder_iterative(self):
@@ -96,6 +97,26 @@ class BST:
                 self.visit(tmp)
                 tmp = tmp.right
         
+    def preorder_iterative(self):
+
+        """
+        
+        
+        """
+
+        if self.root is None:
+            return
+
+        stack = [self.root]
+
+        while stack:
+            tmp = stack.pop()
+            self.visit(tmp)
+            if tmp.right is not None:
+                stack.append(tmp.right)
+            if tmp.left is not None:
+                stack.append(tmp.left)
+        
 if __name__ == "__main__":
     bst = BST()
 
@@ -105,5 +126,8 @@ if __name__ == "__main__":
     bst.add(2)
     bst.add(9)
     bst.add(6)
-    
-    bst.inorder()
+
+    bst.preorder()
+    print()
+    bst.preorder_iterative()
+
