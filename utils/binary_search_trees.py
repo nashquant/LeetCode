@@ -37,7 +37,7 @@ class BST:
         if node is not None:
             print(node.val)
 
-    def pre_order(self, node: Optional[TreeNode] = None):
+    def preorder(self, node: Optional[TreeNode] = None):
         """
         Traverse Visit -> Left -> Right
         """
@@ -50,7 +50,7 @@ class BST:
         if node.right:
             self.pre_order(node.right)
 
-    def in_order(self, node: Optional[TreeNode] = None):
+    def inorder(self, node: Optional[TreeNode] = None):
         """
         Traverse Left -> Visit -> Right
         """
@@ -63,7 +63,7 @@ class BST:
         if node.right:
             self.in_order(node.right)
     
-    def post_order(self, node: Optional[TreeNode] = None):
+    def postorder(self, node: Optional[TreeNode] = None):
 
         """
         Traverse Left -> Right -> Visit
@@ -76,6 +76,26 @@ class BST:
             self.post_order(node.right)
         self.visit(node)
         
+    def inorder_iterative(self):
+
+        """
+        Complexity: O(n)
+        Aux Space: O(h) -> h = height of the tree
+        
+        """
+
+        stack = []
+        tmp = self.root
+
+        while stack or tmp is not None:
+            if tmp is not None:
+                stack.append(tmp)
+                tmp = tmp.left
+            else:
+                tmp = stack.pop()
+                self.visit(tmp)
+                tmp = tmp.right
+        
 if __name__ == "__main__":
     bst = BST()
 
@@ -86,4 +106,4 @@ if __name__ == "__main__":
     bst.add(9)
     bst.add(6)
     
-    bst.in_order()
+    bst.inorder()
