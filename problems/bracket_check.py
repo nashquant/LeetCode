@@ -3,6 +3,10 @@ def bracket_validator(string: str) -> bool:
     """
     O(n) time complexity -> due to looping the string once.
     O(n) space complexity -> due to stack.
+    
+    Obs: pop/append operation at the top of stack is O(1).
+    Assumes space complexity of OPEN/CLOSE is O(1) because
+    there's a fixed amount of possible open/close brackets.
     """
     
     string = string.replace(" ","")
