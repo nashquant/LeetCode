@@ -1,5 +1,10 @@
 def bracket_validator(string: str) -> bool:
     
+    """
+    O(n) time complexity -> due to looping the string once.
+    O(n) space complexity -> due to stack.
+    """
+    
     string = string.replace(" ","")
     
     OPEN = ["{","(","["]
@@ -8,7 +13,6 @@ def bracket_validator(string: str) -> bool:
     MATCH = dict(zip(CLOSE,OPEN))
     
     open_stack = []
-    
     for char in string:
         if char in OPEN:
             open_stack.append(char)
